@@ -1,0 +1,64 @@
+<script type="text/javascript">
+    RED.nodes.registerType('campusbadge',{
+        category: 'function',
+        color: '#0080A0',
+        defaults: {
+          badgeid: {default: ""},
+          lights: {},
+          led1: {default: "#000000"},
+          led2: {default: "#000000"},
+          led3: {default: "#000000"},
+          led4: {default: "#000000"},
+          led5: {default: "#000000"},
+          tone: {default: 0},
+          time: {default: 0},
+          text: {default: ""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "white-globe.png",
+        label: function() {
+            return "Badge "+ this.badgeid||"Badge";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="campusbadge">
+    <div class="form-row">
+        <label for="node-input-badgeid">Badge ID</label>
+        <input type="text" id="node-input-badgeid" placeholder="ABC1">
+    </div>
+
+	<H3>Lights</h3>
+    <div class="form-row">
+      <input type="checkbox" id="node-input-lights">
+	    <input type="color" id="node-input-led5"  value="#000000" style="width:40px;">
+	    <input type="color" id="node-input-led4"  value="#000000" style="width:40px;">
+	    <input type="color" id="node-input-led3"  value="#000000" style="width:40px;">
+	    <input type="color" id="node-input-led2"  value="#000000" style="width:40px;">
+	    <input type="color" id="node-input-led1"  value="#000000" style="width:40px;">
+    </div>
+	
+	
+	
+	<h3>Message</h3>
+    <div class="form-row">
+        <label for="node-input-text">Text {}</label>
+        <input type="text" id="node-input-text" placeholder="Your Message">
+    </div>
+    
+	<h3>Sounds</h3>
+    <div class="form-row">
+        <label for="node-input-tone"><i class="icon-tag"></i> Tone</label>
+        <input type="text" id="node-input-tone" placeholder="frequency">
+        <label for="node-input-time"><i class="icon-tag"></i> Time</label>
+        <input type="text" id="node-input-time" placeholder="miliseconds">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="campusbadge">
+    <p>A node that wraps the ngrok controller and also adds the ngrok binary</p>
+    
+    
+    
+</script>
