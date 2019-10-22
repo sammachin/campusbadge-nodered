@@ -1,60 +1,54 @@
 const mustache = require("mustache");
 
-
 module.exports = function(RED) {
   function campusbadge(config) {
     RED.nodes.createNode(this, config);
     var node = this;
-    this.badgeid = config.badgeid;
-		this.lights = config.lights;
-		this.tone = config.tone;
-		this.time = config.time;
+	this.tone = config.tone;
+	this.time = config.time;
     this.led1 = config.led1;
     this.led2 = config.led2;
     this.led3 = config.led3;
     this.led4 = config.led4;
     this.led5 = config.led5;
-    this.lights = config.lights;
     this.text = config.text;
     node.on('input', function(msg) {
-			var data = dataobject(this.context(), msg)
-      msg.payload = {}
-			if (config.text != ''){
-				msg.payload.text = this.text;
-			}
-			if (this.time != ''){
-        msg.payload.sound = {}
-				msg.payload.sound.tone =  this.tone;
-        msg.payload.sound.time = this.time;
-			}
-			if (this.lights != null){
-				msg.payload.lights = []
+		var data = dataobject(this.context(), msg)
+		this.badgeid = mustache.render(config.badgeid, data)
+		this.text = mustache.render(config.text, data)
+		this.time = mustache.render(config.time, data)
+		this.tone = mustache.render(config.tone, data)
+      	msg.payload = {}
+		if (this.text != ''){
+			msg.payload.t = this.text
+		}
+		if (this.time != ''){
+			msg.payload.f =  this.tone;
+        	msg.payload.d = this.time;
+		}
+		msg.payload.l = []
         var d = hexToRgb(this.led1)
-        msg.payload.lights.push(d.g)
-        msg.payload.lights.push(d.r)
-        msg.payload.lights.push(d.b)
+        msg.payload.l.push(d.g)
+        msg.payload.l.push(d.r)
+        msg.payload.l.push(d.b)
         d = hexToRgb(this.led2)
-        msg.payload.lights.push(d.g)
-        msg.payload.lights.push(d.r)
-        msg.payload.lights.push(d.b)
+        msg.payload.l.push(d.g)
+        msg.payload.l.push(d.r)
+        msg.payload.l.push(d.b)
         d = hexToRgb(this.led3)
-        msg.payload.lights.push(d.g)
-        msg.payload.lights.push(d.r)
-        msg.payload.lights.push(d.b)
+        msg.payload.l.push(d.g)
+        msg.payload.l.push(d.r)
+        msg.payload.l.push(d.b)
         d = hexToRgb(this.led4)
-        msg.payload.lights.push(d.g)
-        msg.payload.lights.push(d.r)
-        msg.payload.lights.push(d.b)
+        msg.payload.l.push(d.g)
+        msg.payload.l.push(d.r)
+        msg.payload.l.push(d.b)
         d = hexToRgb(this.led5)
-        msg.payload.lights.push(d.g)
-        msg.payload.lights.push(d.r)
-        msg.payload.lights.push(d.b)
-			}
-      console.log(msg.payload)
-      clean(msg.payload)
-      console.log(msg.payload)
-      msg.topic = "/badge/"+this.badgeid+"/message"
-      node.send(msg);  
+        msg.payload.l.push(d.g)
+        msg.payload.l.push(d.r)
+        msg.payload.l.push(d.b)
+      	msg.topic = "/badge/"+this.badgeid+"/message"
+      	node.send(msg);  
     });
 }  
  RED.nodes.registerType("campusbadge",campusbadge);      

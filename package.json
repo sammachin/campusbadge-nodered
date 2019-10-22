@@ -1,6 +1,6 @@
 {
   "name": "campusbadge-nodered",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "NodeRED package for the Campus Badge",
   "main": "index.js",
   "scripts": {

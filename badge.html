@@ -25,13 +25,12 @@
 
 <script type="text/x-red" data-template-name="campusbadge">
     <div class="form-row">
-        <label for="node-input-badgeid">Badge ID</label>
+        <label for="node-input-badgeid">Badge ID {}</label>
         <input type="text" id="node-input-badgeid" placeholder="ABC1">
     </div>
 
 	<H3>Lights</h3>
     <div class="form-row">
-      <input type="checkbox" id="node-input-lights">
 	    <input type="color" id="node-input-led5"  value="#000000" style="width:40px;">
 	    <input type="color" id="node-input-led4"  value="#000000" style="width:40px;">
 	    <input type="color" id="node-input-led3"  value="#000000" style="width:40px;">
@@ -49,9 +48,9 @@
     
 	<h3>Sounds</h3>
     <div class="form-row">
-        <label for="node-input-tone"><i class="icon-tag"></i> Tone</label>
+        <label for="node-input-tone"><i class="icon-tag"></i> Tone {}</label>
         <input type="text" id="node-input-tone" placeholder="frequency">
-        <label for="node-input-time"><i class="icon-tag"></i> Time</label>
+        <label for="node-input-time"><i class="icon-tag"></i> Time {}</label>
         <input type="text" id="node-input-time" placeholder="miliseconds">
     </div>
 </script>
